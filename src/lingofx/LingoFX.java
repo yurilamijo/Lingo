@@ -29,6 +29,7 @@ public class LingoFX extends Application {
 
     /**
      * @param args the command line arguments
+     * stuff
      */
     public static void main(String[] args) {
         launch(args);
