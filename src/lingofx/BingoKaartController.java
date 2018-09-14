@@ -26,11 +26,13 @@ public class BingoKaartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+    public int[] kaartArr = {};
     @FXML
     private void kaartButtonAction(ActionEvent event){
-        for(int i = 0; i<25; i=i+1){
+        for(int i =0;i<25;i++){
             int randomNum = ThreadLocalRandom.current().nextInt(1, 70 + 1);
+            kaartArr[i]=randomNum;
+            System.out.println(kaartArr[i]);
         }
     }
 }
