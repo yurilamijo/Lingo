@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -21,11 +22,13 @@ public class LingoViewController implements Initializable {
 
     @FXML
     private Label labelName;
-    private Label Woord;
+    
+    @FXML
+    private TextField inputWoord;
+    
+    @FXML
+    private Label woord;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -37,6 +40,13 @@ public class LingoViewController implements Initializable {
     
     @FXML
     private void sendWoordAction(ActionEvent event) {
-        System.out.println("Send Woord");
+        if(inputWoord.getText().matches(".*\\d+.*")) {
+            System.out.println("numbers");
+            woord.setText("Incorrect value");
+        } else {
+            woord.setText(inputWoord.getText());
+        }
+        
+        inputWoord.clear();
     }
 }
