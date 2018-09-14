@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/Users/yurilamijo/NetBeansProjects/LingoFX/src/lingofx/LingoFX.java</file>
-=======
-            <file>file:/C:/Users/niels_000/Desktop/School/Git%20repos/Lingo/src/lingofx/LingoView.fxml</file>
-            <file>file:/C:/Users/niels_000/Desktop/School/Git%20repos/Lingo/src/lingofx/FXMLDocumentController.java</file>
-            <file>file:/C:/Users/niels_000/Desktop/School/Git%20repos/Lingo/src/lingofx/LingoFX.java</file>
-            <file>file:/C:/Users/niels_000/Desktop/School/Git%20repos/Lingo/src/lingofx/BingoKaart.fxml</file>
-            <file>file:/C:/Users/niels_000/Desktop/School/Git%20repos/Lingo/src/lingofx/FXMLDocument.fxml</file>
-            <file>file:/C:/Users/niels_000/Desktop/School/Git%20repos/Lingo/src/lingofx/LingoViewController.java</file>
-            <file>file:/C:/Users/niels_000/Desktop/School/Git%20repos/Lingo/src/lingofx/BingoKaartController.java</file>
->>>>>>> 6f4e8fd7cd6071105c0e97feedf003df994df1ef
+            <file>file:/Users/yurilamijo/NetBeansProjects/LingoFX/src/lingofx/LingoViewController.java</file>
         </group>
     </open-files>
 </project-private>
