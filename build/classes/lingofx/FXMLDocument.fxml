@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="496.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="lingofx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lingofx.FXMLDocumentController">
     <children>
         <Button fx:id="button" layoutX="202.0" layoutY="328.0" onAction="#handleButtonAction" prefHeight="33.0" prefWidth="92.0" text="Begin" />
         <Label fx:id="label" layoutX="261.0" layoutY="292.0" minHeight="16" minWidth="69" />
@@ -26,5 +26,6 @@
             <Font size="36.0" />
          </font>
       </Label>
+      <Button fx:id="kaartTest" layoutX="61.0" layoutY="329.0" mnemonicParsing="false" onAction="#kaartTestAction" text="Kaart test" />
     </children>
 </AnchorPane>
