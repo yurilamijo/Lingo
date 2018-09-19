@@ -32,7 +32,7 @@ public class FXMLDocumentController implements Initializable {
         Parent lingoView = loader.load();
 
         LingoViewController controller = loader.getController();
-        controller.setData(name.getText());
+        controller.setName(name.getText());
 
         Scene scene = new Scene(lingoView);        
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

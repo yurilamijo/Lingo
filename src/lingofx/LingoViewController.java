@@ -12,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 /**
  * FXML Controller class
@@ -28,13 +31,19 @@ public class LingoViewController implements Initializable {
     
     @FXML
     private Label woord;
-
+    
+    @FXML
+    private HBox hbox;
+            
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        for (int i=1; i<=5; i++){
+            hbox.getChildren().add(new Circle(150,150,35,Color.WHITE));
+        }   
     }    
     
-    public void setData(String name){
+    public void setName(String name){
         labelName.setText(name);
     }
     
@@ -42,9 +51,10 @@ public class LingoViewController implements Initializable {
     private void sendWoordAction(ActionEvent event) {
         if(inputWoord.getText().matches(".*\\d+.*")) {
             System.out.println("numbers");
-            woord.setText("Incorrect value");
+            woord.setText("Incorrect value");          
         } else {
-            woord.setText(inputWoord.getText());
+            woord.setText(inputWoord.getText());    
+//            letter.setText(Character.toString(inputWoord.getText().charAt(0)));
         }
         
         inputWoord.clear();
