@@ -6,13 +6,16 @@
 package lingofx;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -33,14 +36,24 @@ public class LingoViewController implements Initializable {
     private Label woord;
     
     @FXML
-    private HBox hbox;
+    private GridPane grid;
+    
+    private List<Circle> circles;
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        for (int i=1; i<=5; i++){
-            hbox.getChildren().add(new Circle(150,150,35,Color.WHITE));
-        }   
+
+        circles = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++){
+                Circle circle = new Circle(0,0,30,Color.GRAY);
+                circles.add(circle);
+                grid.setHalignment(circle, HPos.CENTER);
+                grid.add(circle, i, j); 
+            }   
+        }
+        
+        System.out.println(circles.size());
     }    
     
     public void setName(String name){
@@ -49,12 +62,12 @@ public class LingoViewController implements Initializable {
     
     @FXML
     private void sendWoordAction(ActionEvent event) {
+        
         if(inputWoord.getText().matches(".*\\d+.*")) {
             System.out.println("numbers");
             woord.setText("Incorrect value");          
         } else {
             woord.setText(inputWoord.getText());    
-//            letter.setText(Character.toString(inputWoord.getText().charAt(0)));
         }
         
         inputWoord.clear();

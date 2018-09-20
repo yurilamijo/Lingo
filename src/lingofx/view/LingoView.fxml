@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lingofx.LingoViewController">
+   <children>
+      <Label alignment="CENTER" layoutX="201.0" layoutY="20.0" prefHeight="38.0" prefWidth="198.0" text="Raad het woord" textAlignment="CENTER">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="inputWoord" layoutX="189.0" layoutY="428.0" prefHeight="38.0" prefWidth="223.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label fx:id="labelName" layoutX="501.0" layoutY="20.0" prefHeight="28.0" prefWidth="77.0" />
+      <Label fx:id="woord" alignment="CENTER" layoutX="125.0" layoutY="388.0" prefHeight="40.0" prefWidth="364.0">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Button fx:id="sendWoord" layoutX="427.0" layoutY="434.0" mnemonicParsing="false" onAction="#sendWoordAction" text="Submit" />
+      <GridPane fx:id="grid" alignment="CENTER" layoutX="118.0" layoutY="80.0" prefHeight="320.0" prefWidth="364.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>

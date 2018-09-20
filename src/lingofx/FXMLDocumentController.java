@@ -28,7 +28,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LingoView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LingoView.fxml"));
         Parent lingoView = loader.load();
 
         LingoViewController controller = loader.getController();
@@ -42,7 +42,7 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     private void kaartTestAction(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BingoKaart.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/BingoKaart.fxml"));
         Parent bingoKaart = loader.load();
 
         BingoKaartController controller = loader.getController();
