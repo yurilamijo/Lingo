@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -26,34 +27,19 @@ import javafx.scene.shape.Circle;
  */
 public class LingoViewController implements Initializable {
 
-    @FXML
-    private Label labelName;
+    @FXML private Label labelName;
+    @FXML private TextField inputWoord;
+    @FXML private Label woord;
+    @FXML private GridPane grid;
     
-    @FXML
-    private TextField inputWoord;
+    private final int maxValue = 5;
     
-    @FXML
-    private Label woord;
-    
-    @FXML
-    private GridPane grid;
-    
-    private List<Circle> circles;
+    private Circle[][] circles = new Circle[maxValue][maxValue];
+    private Label[][] labels = new Label[maxValue][maxValue];
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        circles = new ArrayList<>();
-        for(int i=0;i<5;i++){
-            for(int j=0;j<5;j++){
-                Circle circle = new Circle(0,0,30,Color.GRAY);
-                circles.add(circle);
-                grid.setHalignment(circle, HPos.CENTER);
-                grid.add(circle, i, j); 
-            }   
-        }
-        
-        System.out.println(circles.size());
+        buildBoard();
     }    
     
     public void setName(String name){
@@ -67,9 +53,57 @@ public class LingoViewController implements Initializable {
             System.out.println("numbers");
             woord.setText("Incorrect value");          
         } else {
-            woord.setText(inputWoord.getText());    
+            woord.setText(inputWoord.getText());  
+            changeBoard();
         }
         
         inputWoord.clear();
+    }
+    
+    private void buildBoard(){
+        for(int i=0;i<5;i++){          
+            for(int j=0;j<5;j++){
+                Circle circle = new Circle(0,0,30,Color.GRAY);
+                circles[i][j] = circle;
+                grid.setHalignment(circle, HPos.CENTER);
+                grid.add(circle, i, j); 
+            }   
+        }
+        
+        for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++){
+                Label label = new Label(Integer.toString(i));
+                labels[i][j] = label;
+                grid.setHalignment(label, HPos.CENTER);
+                grid.add(label, i, j);
+            }
+        }
+    }
+    
+    private void changeBoard(){
+        String letter = "";
+        List<String> letters = new ArrayList<String>();
+        char c;
+        
+        for(int i=0;i<inputWoord.getText().length();i++){
+            c = inputWoord.getText().charAt(i);
+            letter = Character.toString(c);
+            letters.add(letter);
+        }
+
+        changeLetter();
+ 
+//        for(int i=0;i<cirles.size();i++){
+//            Circle test = circles.get(i);
+//        }
+    }
+    
+    private void changeLetter(){
+        System.out.println("Length: " + labels[0].length);
+        for(int i=0;i<labels[0].length;i++){
+            Label testLetter = labels[0][i];
+            System.out.println(inputWoord.getText().charAt(i));
+            testLetter.setText(inputWoord.getText());
+        }
     }
 }
