@@ -102,8 +102,8 @@ public class LingoViewController implements Initializable {
         System.out.println("Length: " + labels[0].length);
         for(int i=0;i<labels[0].length;i++){
             Label testLetter = labels[0][i];
-            System.out.println(inputWoord.getText().charAt(i));
-            testLetter.setText(inputWoord.getText());
+            char letter = inputWoord.getText().charAt(i);
+            testLetter.setText(String.valueOf(letter));
         }
     }
 }
