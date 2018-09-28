@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -29,38 +30,96 @@ public class BingoKaartController implements Initializable {
     }
 
     public int[] kaart1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    
-    @FXML private Label kaartNum1;
-    @FXML private Label kaartNum2;
-    @FXML private Label kaartNum3;
-    @FXML private Label kaartNum4;
-    @FXML private Label kaartNum5;
-    @FXML private Label kaartNum6;
-    @FXML private Label kaartNum7;
-    @FXML private Label kaartNum8;
-    @FXML private Label kaartNum9;
-    @FXML private Label kaartNum10;
-    @FXML private Label kaartNum11;
-    @FXML private Label kaartNum12;
-    @FXML private Label kaartNum13;
-    @FXML private Label kaartNum14;
-    @FXML private Label kaartNum15;
-    @FXML private Label kaartNum16;
-    @FXML private Label kaartNum17;
-    @FXML private Label kaartNum18;
-    @FXML private Label kaartNum19;
-    @FXML private Label kaartNum20;
-    @FXML private Label kaartNum21;
-    @FXML private Label kaartNum22;
-    @FXML private Label kaartNum23;
-    @FXML private Label kaartNum24;
-    @FXML private Label kaartNum25;
-    
-    @FXML private void kaartButtonAction(ActionEvent event) {
+    public char[] woordArr = new char[5];
+
+    public String woord;
+
+    @FXML
+    private Label kaartNum1;
+    @FXML
+    private Label kaartNum2;
+    @FXML
+    private Label kaartNum3;
+    @FXML
+    private Label kaartNum4;
+    @FXML
+    private Label kaartNum5;
+    @FXML
+    private Label kaartNum6;
+    @FXML
+    private Label kaartNum7;
+    @FXML
+    private Label kaartNum8;
+    @FXML
+    private Label kaartNum9;
+    @FXML
+    private Label kaartNum10;
+    @FXML
+    private Label kaartNum11;
+    @FXML
+    private Label kaartNum12;
+    @FXML
+    private Label kaartNum13;
+    @FXML
+    private Label kaartNum14;
+    @FXML
+    private Label kaartNum15;
+    @FXML
+    private Label kaartNum16;
+    @FXML
+    private Label kaartNum17;
+    @FXML
+    private Label kaartNum18;
+    @FXML
+    private Label kaartNum19;
+    @FXML
+    private Label kaartNum20;
+    @FXML
+    private Label kaartNum21;
+    @FXML
+    private Label kaartNum22;
+    @FXML
+    private Label kaartNum23;
+    @FXML
+    private Label kaartNum24;
+    @FXML
+    private Label kaartNum25;
+    @FXML
+    private Label wordText;
+    @FXML
+    private Label charNum;
+    @FXML
+    private Label wordFromArr;
+    @FXML
+    private TextField wordInput;
+
+    @FXML
+    private void kaartButtonAction(ActionEvent event) {
         GenerateKaart1();
         PutNumInLabel(kaart1);
-        
-        
+    }
+
+    @FXML
+    private void ActionCheckWord(ActionEvent event) {
+        if (wordInput.getText().matches(".*\\d+.*") || wordInput.getText().length() != 5) {
+            System.out.println("numbers");
+            if (wordInput.getText().length() != 5) {
+                wordText.setText("Woord moet 5 letters lang zijn");
+            } else {
+                wordText.setText("Incorrect value");
+            }
+        } else {
+            wordText.setText(wordInput.getText());
+            woord = wordInput.getText();
+            charNum.setText(String.valueOf(wordInput.getText().length()));
+        }
+        if (woord != null) {
+            for (int i = 0; i < 5; i++) {
+                char letter = woord.charAt(i);
+                woordArr[i] = letter;
+            }
+            wordFromArr.setText(String.valueOf(woordArr));
+        }
     }
 
     public void GenerateKaart1() {
@@ -94,8 +153,8 @@ public class BingoKaartController implements Initializable {
             }
         }
     }
-    
-    public void PutNumInLabel(int[] arr){
+
+    public void PutNumInLabel(int[] arr) {
         kaartNum1.setText(Integer.toString(arr[0]));
         kaartNum2.setText(Integer.toString(arr[1]));
         kaartNum3.setText(Integer.toString(arr[2]));
