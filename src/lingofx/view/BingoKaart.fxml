@@ -11,30 +11,35 @@
 <AnchorPane id="AnchorPane" fx:id="KaartButton" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lingofx.BingoKaartController">
    <children>
       <Button fx:id="kaartButton" layoutX="23.0" layoutY="29.0" mnemonicParsing="false" onAction="#kaartButtonAction" text="Maak kaart" />
-      <Label fx:id="kaartNum1" layoutX="143.0" layoutY="71.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum2" layoutX="184.0" layoutY="71.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum3" layoutX="227.0" layoutY="71.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum4" layoutX="273.0" layoutY="71.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum5" layoutX="317.0" layoutY="71.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum6" layoutX="143.0" layoutY="103.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum7" layoutX="184.0" layoutY="103.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum8" layoutX="227.0" layoutY="103.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum9" layoutX="273.0" layoutY="103.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum10" layoutX="317.0" layoutY="103.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum11" layoutX="143.0" layoutY="133.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum12" layoutX="184.0" layoutY="133.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum13" layoutX="227.0" layoutY="133.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum14" layoutX="273.0" layoutY="133.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum15" layoutX="317.0" layoutY="133.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum16" layoutX="143.0" layoutY="164.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum17" layoutX="184.0" layoutY="164.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum18" layoutX="227.0" layoutY="164.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum19" layoutX="273.0" layoutY="164.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum20" layoutX="317.0" layoutY="164.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum21" layoutX="143.0" layoutY="190.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum22" layoutX="184.0" layoutY="190.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum23" layoutX="227.0" layoutY="190.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum24" layoutX="273.0" layoutY="190.0" text="Label" textAlignment="CENTER" />
-      <Label fx:id="kaartNum25" layoutX="317.0" layoutY="190.0" text="Label" textAlignment="CENTER" />
+      <Label fx:id="kaartNum1" layoutX="23.0" layoutY="70.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum2" layoutX="64.0" layoutY="70.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum3" layoutX="107.0" layoutY="70.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum4" layoutX="153.0" layoutY="70.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum5" layoutX="197.0" layoutY="70.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum6" layoutX="23.0" layoutY="102.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum7" layoutX="64.0" layoutY="102.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum8" layoutX="107.0" layoutY="102.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum9" layoutX="153.0" layoutY="102.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum10" layoutX="197.0" layoutY="102.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum11" layoutX="23.0" layoutY="132.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum12" layoutX="64.0" layoutY="132.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum13" layoutX="107.0" layoutY="132.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum14" layoutX="153.0" layoutY="132.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum15" layoutX="197.0" layoutY="132.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum16" layoutX="23.0" layoutY="163.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum17" layoutX="64.0" layoutY="163.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum18" layoutX="107.0" layoutY="163.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum19" layoutX="153.0" layoutY="163.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum20" layoutX="197.0" layoutY="163.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum21" layoutX="23.0" layoutY="189.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum22" layoutX="64.0" layoutY="189.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum23" layoutX="107.0" layoutY="189.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum24" layoutX="153.0" layoutY="189.0" textAlignment="CENTER" />
+      <Label fx:id="kaartNum25" layoutX="197.0" layoutY="189.0" textAlignment="CENTER" />
+      <TextField fx:id="wordInput" layoutX="309.0" layoutY="39.0" promptText="typ een woord" />
+      <Button fx:id="checkWord" layoutX="309.0" layoutY="87.0" mnemonicParsing="false" onAction="#ActionCheckWord" text="Check Word" />
+      <Label fx:id="wordText" layoutX="309.0" layoutY="132.0" text="Woord" />
+      <Label fx:id="charNum" layoutX="309.0" layoutY="179.0" text="Aantal chars" />
+      <Label fx:id="wordFromArr" layoutX="309.0" layoutY="228.0" text="Woord van Arr" />
    </children>
 </AnchorPane>
