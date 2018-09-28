@@ -2,11 +2,23 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+
+
+    File txt = new File("file.txt");
+    Scanner scan = new Scanner(txt);
+    ArrayList<String> data = new ArrayList<String>() ;
+    while(scan.hasNextLine()){
+        data.add(scan.nextLine());
+    }
+    System.out.println(data);
+    String[] simpleArray = data.toArray(new String[]{});
+
  */
 package lingofx;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +43,7 @@ public class BingoKaartController implements Initializable {
 
     public int[] kaart1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public char[] woordArr = new char[5];
+    public String[] wordList = new String[1];
 
     public String woord;
 
@@ -118,8 +131,30 @@ public class BingoKaartController implements Initializable {
                 char letter = woord.charAt(i);
                 woordArr[i] = letter;
             }
-            wordFromArr.setText(String.valueOf(woordArr));
+            if (CheckWoord(woordArr)) {
+                wordFromArr.setText("correct woord");
+            } else {
+                wordFromArr.setText("incorrect woord");
+            }
         }
+    }
+
+    public void FillArray(String[] arr){
+        
+    }
+    
+    public void AddWoord(String[] arr, String str) {
+        Arrays.copyOf(arr, arr.length + 1);
+        arr[arr.length] = str;
+    }
+
+    public Boolean CheckWoord(char[] arr) {
+        Boolean correct = false;
+        System.out.println(arr);
+        if (String.valueOf(arr).equals("woord")) {
+            correct = true;
+        }
+        return correct;
     }
 
     public void GenerateKaart1() {
