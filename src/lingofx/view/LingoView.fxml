@@ -15,7 +15,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="inputWoord" layoutX="189.0" layoutY="428.0" prefHeight="38.0" prefWidth="223.0">
+      <TextField fx:id="woordInput" layoutX="189.0" layoutY="428.0" prefHeight="38.0" prefWidth="223.0">
          <font>
             <Font size="18.0" />
          </font>
