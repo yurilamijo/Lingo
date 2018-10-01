@@ -39,7 +39,6 @@
       <TextField fx:id="wordInput" layoutX="309.0" layoutY="39.0" promptText="typ een woord" />
       <Button fx:id="checkWord" layoutX="309.0" layoutY="87.0" mnemonicParsing="false" onAction="#ActionCheckWord" text="Check Word" />
       <Label fx:id="wordText" layoutX="309.0" layoutY="132.0" text="Woord" />
-      <Label fx:id="charNum" layoutX="309.0" layoutY="179.0" text="Aantal chars" />
-      <Label fx:id="wordFromArr" layoutX="309.0" layoutY="228.0" text="Woord van Arr" />
+      <Label fx:id="wordFromArr" layoutX="306.0" layoutY="163.0" text="Woord van Arr" />
    </children>
 </AnchorPane>

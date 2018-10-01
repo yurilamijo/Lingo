@@ -2,24 +2,21 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
-
-    File txt = new File("file.txt");
-    Scanner scan = new Scanner(txt);
-    ArrayList<String> data = new ArrayList<String>() ;
-    while(scan.hasNextLine()){
-        data.add(scan.nextLine());
-    }
-    System.out.println(data);
-    String[] simpleArray = data.toArray(new String[]{});
-
  */
 package lingofx;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,19 +30,11 @@ import javafx.scene.control.TextField;
  */
 public class BingoKaartController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
+    public File wordsFile = new File("WordList.txt");
 
     public int[] kaart1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public char[] woordArr = new char[5];
-    public String[] wordList = new String[1];
-
-    public String woord;
+    public String[] wordList = new String[0];
 
     @FXML
     private Label kaartNum1;
@@ -100,11 +89,19 @@ public class BingoKaartController implements Initializable {
     @FXML
     private Label wordText;
     @FXML
-    private Label charNum;
-    @FXML
     private Label wordFromArr;
     @FXML
     private TextField wordInput;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try {
+            FillArray();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BingoKaartController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     private void kaartButtonAction(ActionEvent event) {
@@ -113,7 +110,8 @@ public class BingoKaartController implements Initializable {
     }
 
     @FXML
-    private void ActionCheckWord(ActionEvent event) {
+    private void ActionCheckWord(ActionEvent event) throws FileNotFoundException {
+        String woord = null;
         if (wordInput.getText().matches(".*\\d+.*") || wordInput.getText().length() != 5) {
             System.out.println("numbers");
             if (wordInput.getText().length() != 5) {
@@ -121,16 +119,14 @@ public class BingoKaartController implements Initializable {
             } else {
                 wordText.setText("Incorrect value");
             }
+
         } else {
-            wordText.setText(wordInput.getText());
             woord = wordInput.getText();
-            charNum.setText(String.valueOf(wordInput.getText().length()));
+            wordText.setText(null);
         }
+
         if (woord != null) {
-            for (int i = 0; i < 5; i++) {
-                char letter = woord.charAt(i);
-                woordArr[i] = letter;
-            }
+            FillCharArr(woord);
             if (CheckWoord(woordArr)) {
                 wordFromArr.setText("correct woord");
             } else {
@@ -139,20 +135,48 @@ public class BingoKaartController implements Initializable {
         }
     }
 
-    public void FillArray(String[] arr){
-        
+    public void FillArray() throws FileNotFoundException {
+        wordList = new String[0];
+        Scanner scan = new Scanner(wordsFile);
+        while (scan.hasNextLine()) {
+            String word = scan.nextLine();
+            AddWord(word);
+        }
     }
-    
-    public void AddWoord(String[] arr, String str) {
-        Arrays.copyOf(arr, arr.length + 1);
-        arr[arr.length] = str;
+
+    public void FillCharArr(String str) {
+        for (int i = 0; i < 5; i++) {
+            char letter = str.charAt(i);
+            woordArr[i] = letter;
+        }
+    }
+
+    public void AddWord(String str) {
+        wordList = Arrays.copyOf(wordList, wordList.length + 1);
+        wordList[wordList.length - 1] = str;
+    }
+
+    //Updates de text bestand en voegt de string toe aan de lijst.
+    //hierna update hij de array zodat het bestand en de array gelijk blijven
+    public void WriteFile(String str) throws IOException {
+        FileWriter fw = new FileWriter(wordsFile);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (int i = 0; i < wordList.length; i++) {
+            bw.write(wordList[i]);
+            bw.newLine();
+        }
+        bw.write(str);
+        bw.flush();
+        bw.close();
+        FillArray();
     }
 
     public Boolean CheckWoord(char[] arr) {
         Boolean correct = false;
-        System.out.println(arr);
-        if (String.valueOf(arr).equals("woord")) {
-            correct = true;
+        for (int i = 0; i < wordList.length; i++) {
+            if (String.valueOf(arr).equals(wordList[i])) {
+                correct = true;
+            }
         }
         return correct;
     }
