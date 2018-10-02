@@ -8,26 +8,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lingofx.LingoViewController">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lingofx.LingoViewController">
    <children>
-      <Label alignment="CENTER" layoutX="201.0" layoutY="20.0" prefHeight="38.0" prefWidth="198.0" text="Raad het woord" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="245.0" layoutY="29.0" prefHeight="38.0" prefWidth="198.0" text="Raad het woord" textAlignment="CENTER">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="woordInput" layoutX="189.0" layoutY="428.0" prefHeight="38.0" prefWidth="223.0">
+      <TextField fx:id="woordInput" layoutX="233.0" layoutY="480.0" prefHeight="38.0" prefWidth="223.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label fx:id="labelName" layoutX="501.0" layoutY="20.0" prefHeight="28.0" prefWidth="77.0" />
-      <Label fx:id="woord" alignment="CENTER" layoutX="125.0" layoutY="388.0" prefHeight="40.0" prefWidth="364.0">
+      <Label fx:id="labelName" layoutX="580.0" layoutY="34.0" prefHeight="28.0" prefWidth="77.0" />
+      <Label fx:id="message" alignment="CENTER" layoutX="163.0" layoutY="78.0" prefHeight="40.0" prefWidth="364.0">
          <font>
             <Font size="33.0" />
          </font>
       </Label>
-      <Button fx:id="sendWoord" layoutX="427.0" layoutY="434.0" mnemonicParsing="false" onAction="#sendWoordAction" text="Submit" />
-      <GridPane fx:id="grid" alignment="CENTER" layoutX="118.0" layoutY="80.0" prefHeight="320.0" prefWidth="364.0">
+      <Button fx:id="sendWoord" layoutX="482.0" layoutY="486.0" mnemonicParsing="false" onAction="#sendWoordAction" text="Submit" />
+      <GridPane fx:id="grid" alignment="CENTER" layoutX="162.0" layoutY="136.0" prefHeight="320.0" prefWidth="364.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="100.0" />
@@ -43,5 +43,6 @@
             <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <Label fx:id="timer" layoutX="580.0" layoutY="78.0" prefHeight="28.0" prefWidth="77.0" />
    </children>
 </AnchorPane>
