@@ -25,6 +25,8 @@ import javafx.scene.text.Font;
  */
 public class LingoViewController implements Initializable {
 
+    public WordList wl = new WordList();
+    
     @FXML private Label labelName;
     @FXML private Label message;
     @FXML private Label timer;

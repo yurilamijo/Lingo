@@ -26,6 +26,5 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="kaartTest" layoutX="61.0" layoutY="329.0" mnemonicParsing="false" onAction="#kaartTestAction" text="Kaart test" />
     </children>
 </AnchorPane>
