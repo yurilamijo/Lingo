@@ -9,10 +9,25 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class WordList {
+
     public String[] wordList = new String[0];
-    public File wordsFile = new File("WordList.txt");
-    
-    public void FillArray() throws FileNotFoundException {
+    public File wordsFile = new File("wordList.txt");
+
+    public String ReturnWord(String str) throws FileNotFoundException {
+        FillArray();
+        boolean bool = true;
+        String woord = null;
+        int num = (int )(Math.random() * (wordList.length-1));
+        while (bool) {
+            woord = wordList[num];
+            if (!woord.equals(str)) {
+                bool = false;
+            }
+        }
+        return woord;
+    }
+
+    private void FillArray() throws FileNotFoundException {
         wordList = new String[0];
         Scanner scan = new Scanner(wordsFile);
         while (scan.hasNextLine()) {
@@ -20,7 +35,7 @@ public class WordList {
             AddWord(word);
         }
     }
-    
+
     public void WriteFile(String str) throws IOException {
         FileWriter fw = new FileWriter(wordsFile);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -33,8 +48,8 @@ public class WordList {
         bw.close();
         FillArray();
     }
-    
-    public void AddWord(String str) {
+
+    private void AddWord(String str) {
         wordList = Arrays.copyOf(wordList, wordList.length + 1);
         wordList[wordList.length - 1] = str;
     }
