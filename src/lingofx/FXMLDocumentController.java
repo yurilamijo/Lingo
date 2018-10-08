@@ -36,6 +36,7 @@ public class FXMLDocumentController implements Initializable {
 
         Scene scene = new Scene(lingoView);        
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
         stage.hide();
         stage.setScene(scene);
         stage.show();

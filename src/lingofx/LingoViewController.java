@@ -8,12 +8,12 @@ package lingofx;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -34,27 +34,24 @@ public class LingoViewController implements Initializable {
     @FXML private Label labelName;
     @FXML private Label message;
     @FXML private Label timer;
+    @FXML private Label turnsLabel;
     @FXML private TextField woordInput;
     @FXML private GridPane grid;
+    @FXML private Button nextWoord;
     
     private StackPane stackpane; 
     private String lingoWoord;
-    private int turn = 0;
+    private int turn;
     private final int maxValue = 5;
     
     private final Circle[][] circles = new Circle[maxValue][maxValue];
     private final Label[][] labels = new Label[maxValue][maxValue];
-    private final String[] woorden = new String[maxValue];
+    private String[] woorden = new String[maxValue];
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            this.lingoWoord = wl.ReturnWord(null);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(LingoViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         buildBoard();
-        labels[turn][0].setText(String.valueOf(lingoWoord.charAt(0)));
+        newGame();
     }    
     
     public void setName(String name){
@@ -74,14 +71,22 @@ public class LingoViewController implements Initializable {
                 message.setText("Incorrect value");
             }
         } else {
-            if(turn < 5){
+            if(turn < 4){
                 changeBoard();
                 turn++;
+                turnsLabel.setText("Trun: " + (turn+1));
             } else {
-                message.setText("Max turns");
+                message.setText("Verloren!!");
+                nextWoord.setVisible(true);
             }
         }
         woordInput.clear();
+    }
+    
+    @FXML
+    private void nextWoordAction(ActionEvent event){
+        clearBoard();
+        newGame();
     }
     
     private void buildBoard(){
@@ -111,16 +116,33 @@ public class LingoViewController implements Initializable {
         }
     }
     
+    private void newGame(){
+        try {
+            this.lingoWoord = wl.ReturnWord(null);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LingoViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        message.setText("");
+        turn = 0;
+        woorden = new String[maxValue];
+        nextWoord.setVisible(false);
+        labels[turn][0].setText(String.valueOf(lingoWoord.charAt(0)));
+    }
+    
     private void changeBoard(){
        for(int i=0;i<labels[turn].length;i++){
             String letter = String.valueOf(woordInput.getText().charAt(i));
-            Label letterLabel = labels[turn][i];
-
+ 
             woorden[turn] = woordInput.getText();
-            letterLabel.setText(letter);
+            labels[turn][i].setText(letter);
 
-            checkWoord(i);
+//            checkWoord(i);
+            
+            if(checkWoord(i)){
+                labels[turn+1][i].setText(letter);
+            }
        }
+       
 //       if(lingoWoord.equals(woordInput.getText())){
 //           try {
 //                System.out.println("Clear Board");
@@ -132,17 +154,24 @@ public class LingoViewController implements Initializable {
 //       }
     }
 
-        
-    private void checkWoord(int index){
+    private boolean checkWoord(int index){
         char woord = woorden[turn].charAt(index);
         // Check if letters are in lingoWoord
         if(lingoWoord.indexOf(woord) != -1){
             // Check if letter is same position
             if(String.valueOf(lingoWoord.charAt(index)).contains(String.valueOf(woord))){
                 circles[turn][index].setFill(Color.GREEN);
+                if(lingoWoord.equals(woordInput.getText())){
+                    message.setText("Gewonnen!!");
+                    nextWoord.setVisible(true);
+                    return false;
+                }
+                return true;
             } else {
-                circles[turn][woorden[turn].indexOf(woord)].setFill(Color.YELLOW);
+                circles[turn][index].setFill(Color.YELLOW);
+                return false;
             }
         }
+        return false;
     }
 }
