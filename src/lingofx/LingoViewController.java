@@ -8,10 +8,7 @@ package lingofx;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
-<<<<<<< HEAD
 import java.util.concurrent.TimeUnit;
-=======
->>>>>>> 22c73b923861299b05c488b31a34ac5d6aa12238
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -41,11 +38,7 @@ public class LingoViewController implements Initializable {
     @FXML private GridPane grid;
     
     private StackPane stackpane; 
-<<<<<<< HEAD
-    private String lingoWoord = "paard";
-=======
     private String lingoWoord;
->>>>>>> 22c73b923861299b05c488b31a34ac5d6aa12238
     private int turn = 0;
     private final int maxValue = 5;
     
@@ -146,7 +139,7 @@ public class LingoViewController implements Initializable {
         if(lingoWoord.indexOf(woord) != -1){
             // Check if letter is same position
             if(String.valueOf(lingoWoord.charAt(index)).contains(String.valueOf(woord))){
-                circles[turn][lingoWoord.indexOf(woord)].setFill(Color.GREEN);
+                circles[turn][index].setFill(Color.GREEN);
             } else {
                 circles[turn][woorden[turn].indexOf(woord)].setFill(Color.YELLOW);
             }
