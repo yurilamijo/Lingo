@@ -7,6 +7,9 @@ package lingofx;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +35,7 @@ public class LingoViewController implements Initializable {
     @FXML private GridPane grid;
     
     private StackPane stackpane; 
-    private String lingoWoord = "fiets";
+    private String lingoWoord = "paard";
     private int turn = 0;
     private final int maxValue = 5;
     
@@ -70,7 +73,6 @@ public class LingoViewController implements Initializable {
                 message.setText("Max turns");
             }
         }
-
         woordInput.clear();
     }
     
@@ -92,16 +94,34 @@ public class LingoViewController implements Initializable {
         }
     }
     
+    private void clearBoard(){
+        for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++){
+                circles[i][j].setFill(Color.GREY);
+                labels[i][j].setText("");
+            }
+        }
+    }
+    
     private void changeBoard(){
-        for(int i=0;i<labels[turn].length;i++){
+       for(int i=0;i<labels[turn].length;i++){
             String letter = String.valueOf(woordInput.getText().charAt(i));
             Label letterLabel = labels[turn][i];
-            
+
             woorden[turn] = woordInput.getText();
             letterLabel.setText(letter);
-            
+
             checkWoord(i);
-        }
+       }
+//       if(lingoWoord.equals(woordInput.getText())){
+//           try {
+//                System.out.println("Clear Board");
+//                TimeUnit.SECONDS.sleep(2);
+//                clearBoard();
+//           } catch (InterruptedException ex) {
+//                Logger.getLogger(LingoViewController.class.getName()).log(Level.SEVERE, null, ex);
+//           }
+//       }
     }
 
         
