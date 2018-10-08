@@ -5,9 +5,13 @@
  */
 package lingofx;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
+<<<<<<< HEAD
 import java.util.concurrent.TimeUnit;
+=======
+>>>>>>> 22c73b923861299b05c488b31a34ac5d6aa12238
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -28,6 +32,8 @@ import javafx.scene.text.Font;
  */
 public class LingoViewController implements Initializable {
 
+    public WordList wl = new WordList();
+    
     @FXML private Label labelName;
     @FXML private Label message;
     @FXML private Label timer;
@@ -35,7 +41,11 @@ public class LingoViewController implements Initializable {
     @FXML private GridPane grid;
     
     private StackPane stackpane; 
+<<<<<<< HEAD
     private String lingoWoord = "paard";
+=======
+    private String lingoWoord;
+>>>>>>> 22c73b923861299b05c488b31a34ac5d6aa12238
     private int turn = 0;
     private final int maxValue = 5;
     
@@ -45,6 +55,11 @@ public class LingoViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            this.lingoWoord = wl.ReturnWord(null);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LingoViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         buildBoard();
         labels[turn][0].setText(String.valueOf(lingoWoord.charAt(0)));
     }    
