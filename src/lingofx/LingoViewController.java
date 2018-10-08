@@ -6,6 +6,7 @@
 package lingofx;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -21,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -66,7 +72,7 @@ public class LingoViewController implements Initializable {
     }
     
     @FXML
-    private void sendWoordAction(ActionEvent event) {      
+    private void sendWoordAction(ActionEvent event) throws IOException {      
         if (woordInput.getText().matches(".*\\d+.*") || woordInput.getText().length() != 5) {
             if (woordInput.getText().length() != 5) {
                 message.setText("Woord moet 5 letters lang zijn");
@@ -76,6 +82,7 @@ public class LingoViewController implements Initializable {
         } else {
             if(turn < 5){
                 changeBoard();
+                checkSameLetter();
                 turn++;
             } else {
                 message.setText("Max turns");
@@ -111,12 +118,13 @@ public class LingoViewController implements Initializable {
         }
     }
     
-    private void changeBoard(){
-       for(int i=0;i<labels[turn].length;i++){
+    private void changeBoard() throws IOException{
+        woorden[turn] = woordInput.getText();
+        for(int i=0;i<labels[turn].length;i++){
             String letter = String.valueOf(woordInput.getText().charAt(i));
             Label letterLabel = labels[turn][i];
 
-            woorden[turn] = woordInput.getText();
+            
             letterLabel.setText(letter);
 
             checkWoord(i);
@@ -133,7 +141,7 @@ public class LingoViewController implements Initializable {
     }
 
         
-    private void checkWoord(int index){
+    private void checkWoord(int index) throws IOException{
         char woord = woorden[turn].charAt(index);
         // Check if letters are in lingoWoord
         if(lingoWoord.indexOf(woord) != -1){
@@ -141,8 +149,30 @@ public class LingoViewController implements Initializable {
             if(String.valueOf(lingoWoord.charAt(index)).contains(String.valueOf(woord))){
                 circles[turn][index].setFill(Color.GREEN);
             } else {
-                circles[turn][woorden[turn].indexOf(woord)].setFill(Color.YELLOW);
+                circles[turn][index].setFill(Color.YELLOW);
             }
         }
+    }
+
+    private void checkSameLetter() throws IOException {
+        String[] letterArr = new String[5];
+        for(int i = 0; i<5; i++){
+            letterArr[i] = String.valueOf(this.woordInput.getText().charAt(i));
+        }
+        if(letterArr[0].equals(letterArr[1]) && letterArr[0].equals(letterArr[2]) && letterArr[0].equals(letterArr[3]) && letterArr[0].equals(letterArr[4])){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("view/Popup.fxml"));
+            Parent popup = loader.load();
+            
+            Scene scene = new Scene(popup);    
+            Stage stage = new Stage();
+            stage.setTitle("Valsspeler! " + "'" + this.woordInput.getText() + "'" + " is geen bestaand woord");
+            stage.setScene(scene);
+            stage.show();
+            letterArr = new String[5];
+        }
+    }
+    
+    public void ExternalReset(){
+        clearBoard();
     }
 }
