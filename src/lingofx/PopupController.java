@@ -18,6 +18,5 @@ public class PopupController implements Initializable {
         LingoViewController lvc = new LingoViewController();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
-//        lvc.ExternalReset();
     }
 }

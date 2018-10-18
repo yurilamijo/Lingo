@@ -8,6 +8,7 @@ package lingofx;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,6 +53,7 @@ public class LingoViewController implements Initializable {
     private final Circle[][] circles = new Circle[maxValue][maxValue];
     private final Label[][] labels = new Label[maxValue][maxValue];
     private String[] woorden = new String[maxValue];
+    private char[] woord = new char[maxValue];
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -131,6 +133,7 @@ public class LingoViewController implements Initializable {
         turnsLabel.setText("Turn: " + (turn+1));
         changeControls("", false);
         woorden = new String[maxValue];
+        woord = new char[maxValue];
         labels[turn][0].setText(String.valueOf(lingoWoord.charAt(0)));
     }
     
@@ -142,33 +145,31 @@ public class LingoViewController implements Initializable {
             Label letterLabel = labels[turn][i];
 
             letterLabel.setText(letter);
-
-            if(checkWoord(i) && turn != 4){
+            checkWoord(i);
+            if(turn != 4 && !lingoWoord.equals(woorden[turn])){
                 labels[turn+1][0].setText(String.valueOf(lingoWoord.charAt(0)));
-                labels[turn+1][i].setText(letter);
+                labels[turn+1][i].setText(String.valueOf(woord[i]));
             }
        }
        turn++;
     }
     
-    private boolean checkWoord(int index) throws IOException{
-        char woord = woorden[turn].charAt(index);
+    private void checkWoord(int index) throws IOException{
+        char letter = woorden[turn].charAt(index);
         // Check if letters are in lingoWoord
-        if(lingoWoord.indexOf(woord) != -1){
+        if(lingoWoord.indexOf(letter) != -1){
             // Check if letter is same position
-            if(String.valueOf(lingoWoord.charAt(index)).contains(String.valueOf(woord))){
+            if(String.valueOf(lingoWoord.charAt(index)).contains(String.valueOf(letter))){
+                woord[index] = letter;
                 circles[turn][index].setFill(Color.GREEN);
-                if(lingoWoord.equals(woordInput.getText())){
+                
+                if(lingoWoord.equals(woorden[turn])){
                     changeControls("Gewonnen!!", true);
-                    return false;
                 }
-                return true;
             } else {
-                circles[turn][woorden[turn].indexOf(woord)].setFill(Color.YELLOW);
-                return false;
+                circles[turn][woorden[turn].indexOf(letter)].setFill(Color.YELLOW);
             }
         }
-        return false;
     }
 
     private void checkSameLetter() throws IOException {
@@ -189,9 +190,4 @@ public class LingoViewController implements Initializable {
             newGame();
         }
     }
-    
-//    public void ExternalReset(){
-//        System.out.println("IN");
-//        clearBoard();
-//    }
 }
