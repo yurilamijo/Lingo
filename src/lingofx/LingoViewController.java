@@ -38,7 +38,6 @@ public class LingoViewController implements Initializable {
     
     @FXML private Label labelName;
     @FXML private Label message;
-    @FXML private Label timer;
     @FXML private Label turnsLabel;
     @FXML private TextField woordInput;
     @FXML private GridPane grid;
@@ -64,10 +63,6 @@ public class LingoViewController implements Initializable {
         labelName.setText(name);
     }
     
-    private void timer(){
-        
-    }
-    
     @FXML
     private void sendWoordAction(ActionEvent event) throws IOException {      
         if (woordInput.getText().matches(".*\\d+.*") || woordInput.getText().length() != 5) {
@@ -77,21 +72,17 @@ public class LingoViewController implements Initializable {
                 message.setText("Incorrect value");
             }
         } else {
-            if(turn < 4){
-                changeBoard();
-                checkSameLetter();
-                turn++;
-                turnsLabel.setText("Trun: " + (turn+1));
-            } else {
-                changeControls("Verloren!!", true);
+            if(turn == 4){
+                changeControls("Verloren!!, Het woord was " + lingoWoord, true);
             }
+            changeBoard();
+            checkSameLetter();
         }
         woordInput.clear();
     }
     
     @FXML
     private void nextWoordAction(ActionEvent event){
-        clearBoard();
         newGame();
     }
     
@@ -136,13 +127,15 @@ public class LingoViewController implements Initializable {
             Logger.getLogger(LingoViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         turn = 0;
-        turnsLabel.setText("Trun: " + (turn+1));
+        clearBoard();
+        turnsLabel.setText("Turn: " + (turn+1));
         changeControls("", false);
         woorden = new String[maxValue];
         labels[turn][0].setText(String.valueOf(lingoWoord.charAt(0)));
     }
     
     private void changeBoard() throws IOException{
+        turnsLabel.setText("Turn: " + (turn+1));
         woorden[turn] = woordInput.getText();
         for(int i=0;i<labels[turn].length;i++){
             String letter = String.valueOf(woordInput.getText().charAt(i));
@@ -150,14 +143,14 @@ public class LingoViewController implements Initializable {
 
             letterLabel.setText(letter);
 
-            if(checkWoord(i)){
+            if(checkWoord(i) && turn != 4){
                 labels[turn+1][0].setText(String.valueOf(lingoWoord.charAt(0)));
                 labels[turn+1][i].setText(letter);
             }
        }
+       turn++;
     }
-
-        
+    
     private boolean checkWoord(int index) throws IOException{
         char woord = woorden[turn].charAt(index);
         // Check if letters are in lingoWoord
@@ -171,7 +164,7 @@ public class LingoViewController implements Initializable {
                 }
                 return true;
             } else {
-                circles[turn][index].setFill(Color.YELLOW);
+                circles[turn][woorden[turn].indexOf(woord)].setFill(Color.YELLOW);
                 return false;
             }
         }
@@ -193,7 +186,7 @@ public class LingoViewController implements Initializable {
             stage.setScene(scene);
             stage.show();
             letterArr = new String[5];
-            clearBoard();
+            newGame();
         }
     }
     
