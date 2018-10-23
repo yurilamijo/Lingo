@@ -8,7 +8,6 @@ package lingofx;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,18 +61,22 @@ public class LingoViewController implements Initializable {
     }    
     
     public void setName(String name){
+        // Set users name
         labelName.setText(name);
     }
     
     @FXML
-    private void sendWoordAction(ActionEvent event) throws IOException {      
+    private void sendWoordAction(ActionEvent event) throws IOException {     
+        // Check if woord is woord and not numbers
         if (woordInput.getText().matches(".*\\d+.*") || woordInput.getText().length() != 5) {
+            // Check if woord is 5 length
             if (woordInput.getText().length() != 5) {
                 message.setText("Woord moet 5 letters lang zijn");
             } else {
                 message.setText("Incorrect value");
             }
         } else {
+            message.setText("Spel is bezig");
             if(turn == 4){
                 changeControls("Verloren!!, Het woord was " + lingoWoord, true);
             }
@@ -89,6 +92,7 @@ public class LingoViewController implements Initializable {
     }
     
     private void buildBoard(){
+        // Build board in two dimensional array
         for(int i=0;i<5;i++){          
             for(int j=0;j<5;j++){
                 stackpane = new StackPane();  
@@ -107,6 +111,7 @@ public class LingoViewController implements Initializable {
     }
     
     private void clearBoard(){
+        // Clears board text and color
         for(int i=0;i<5;i++){
             for(int j=0;j<5;j++){
                 circles[i][j].setFill(Color.GREY);
@@ -116,6 +121,7 @@ public class LingoViewController implements Initializable {
     }
     
     private void changeControls(String text, boolean active){
+        // Show or hide button
         message.setText(text);
         woordInput.setDisable(active);
         sendWoord.setDisable(active);
@@ -158,7 +164,7 @@ public class LingoViewController implements Initializable {
         char letter = woorden[turn].charAt(index);
         // Check if letters are in lingoWoord
         if(lingoWoord.indexOf(letter) != -1){
-            // Check if letter is same position
+            // Check if letter is same position         
             if(String.valueOf(lingoWoord.charAt(index)).contains(String.valueOf(letter))){
                 woord[index] = letter;
                 circles[turn][index].setFill(Color.GREEN);
@@ -167,8 +173,8 @@ public class LingoViewController implements Initializable {
                     changeControls("Gewonnen!!", true);
                 }
             } else {
-                circles[turn][woorden[turn].indexOf(letter)].setFill(Color.YELLOW);
-            }
+                circles[turn][index].setFill(Color.YELLOW);
+            }           
         }
     }
 
