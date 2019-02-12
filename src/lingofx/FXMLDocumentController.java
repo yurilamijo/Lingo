@@ -28,27 +28,15 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LingoView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LingoView.fxml"));
         Parent lingoView = loader.load();
 
         LingoViewController controller = loader.getController();
-        controller.setData(name.getText());
+        controller.setName(name.getText());
 
         Scene scene = new Scene(lingoView);        
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.hide();
-        stage.setScene(scene);
-        stage.show();
-    }
-    @FXML
-    private void kaartTestAction(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BingoKaart.fxml"));
-        Parent bingoKaart = loader.load();
-
-        BingoKaartController controller = loader.getController();
-
-        Scene scene = new Scene(bingoKaart);        
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
         stage.hide();
         stage.setScene(scene);
         stage.show();
@@ -56,8 +44,6 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
-    
-    
 }

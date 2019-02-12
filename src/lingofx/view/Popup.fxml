@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="lingofx.PopupController">
+   <children>
+      <Label layoutX="29.0" layoutY="23.0" text="Je hebt vals gespeeld. Klik op de Knop om opnieuw te beginnen!" />
+      <Button fx:id="OpnieuwButton" layoutX="153.0" layoutY="88.0" mnemonicParsing="false" onAction="#ActionOpnieuwButton" text="Begin opnieuw" />
+   </children>
+</AnchorPane>
